@@ -1,0 +1,25 @@
+SCENARIO: UpdateCartDetails
+META-DATA: {"description":"Update Items in cart","groups":["SMOKE"]}
+	
+	Given user creates a new user
+	And user add product into cart '510a0d7e-8e83-4193-b483-e27e09ddc34d'
+	And user verify cart
+	When user updates the cart quantity by '5' for '510a0d7e-8e83-4193-b483-e27e09ddc34d'
+	Then user verify cart
+	And user deletes product '510a0d7e-8e83-4193-b483-e27e09ddc34d'
+	And user verify cart
+END
+
+SCENARIO: CreateUserAndOrder
+META-DATA: {"description":"Create New user and Place Order using the same","groups":["SMOKE"]}
+	
+	Given user creates a new user
+	And user add Product into cart '510a0d7e-8e83-4193-b483-e27e09ddc34d'
+	And user verify cart
+	When user adds new shipping address 'Pune' 'India' '123456' '098765' 'long street'
+	Then address is added successfully
+	And user adds new payment details '1234567890987654' '01/28' '123'
+	When user places the order
+	Then verifies the placed order
+END
+
